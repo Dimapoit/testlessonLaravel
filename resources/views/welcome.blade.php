@@ -81,19 +81,53 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    {{$car}}
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                <table>
+                    <tr>
+                        <thead>
+                        <th>name</th>
+                        <th>description</th>
+                        </thead>
+                    </tr>
+
+                    <tbody>
+                        @foreach($cars as $car)
+                        <tr>
+                            <td>
+                                {{$car->name}}
+                            </td>
+                            <td>
+                                {{$car->description}}
+                            </td>
+                            <td>
+                                <a href="">Edit</a>
+                            </td>
+                            <td>
+                                <a href="">Delete</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+                <form action="{{route('save.car')}}" method="post">
+                    <input name="_token" value="{{csrf_token()}}" type="hidden">
+                    <div class="row">
+                        <label>Car name</label>
+                        <input name="name" class="form-control">
+
+                        <div class="row">
+                            <label>Description</label>
+                            <textarea name="description" class="form-control"></textarea>
+                        </div>
+
+                        <div class="row">
+                            <input type="submit" value="Save">
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </body>
