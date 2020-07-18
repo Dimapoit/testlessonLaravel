@@ -28,4 +28,31 @@ class HomeController extends Controller
         dd($request->all());
         //return view('welcome', compact('title'));
     }
+
+    public function edit($id)
+    {
+        $model = Car::find($id);
+        return view('edit', compact('model'));
+        dd($model);
+    }
+
+    public function update(Request $request, $id) {
+        //dd($request->id);
+        $model = Car::find($id);
+        $data = $request->all();
+        $model->update($data);
+        return redirect()->route('main');
+        //dd($id);
+    }
+
+    public function delete($id)
+    {
+        $model = Car::find($id);
+        //$model->delete();
+
+        Car::destroy($id);
+        return redirect()->route('main');
+        //dd($model);
+    }
+
 }

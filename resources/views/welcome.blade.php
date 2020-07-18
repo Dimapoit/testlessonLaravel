@@ -102,10 +102,12 @@
                                 {{$car->description}}
                             </td>
                             <td>
-                                <a href="">Edit</a>
+                                <a href="{{route('car.edit', $car->id)}}">Edit</a>
                             </td>
                             <td>
-                                <a href="">Delete</a>
+                                {{Form::open(['route'=>['car.delete', $car->id], 'method'=>'delete'])}}
+                                <button type="submit">Delete</button>
+                                {{Form::close()}}
                             </td>
                         </tr>
                         @endforeach

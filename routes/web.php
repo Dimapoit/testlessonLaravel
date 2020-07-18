@@ -17,6 +17,12 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('main');
 
 Route::post('/save-car', 'HomeController@saveCar')->name('save.car');
+
+Route::get('car/edit/{id}', 'HomeController@edit')->name('car.edit');
+
+Route::patch('car/update/{id}', 'HomeController@update')->name('car.update');
+
+Route::delete('car/delete/{id}', 'HomeController@delete')->name('car.delete');
